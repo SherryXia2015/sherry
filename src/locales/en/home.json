@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "tooltips": {
       "lightweightMode": "Lightweight Mode",
@@ -57,7 +57,7 @@
         "autoLaunch": "Auto Launch",
         "runningMode": "Running Mode",
         "lastCheckUpdate": "Last Check Update",
-        "vergeVersion": "Verge Version"
+        "vergeVersion": "Sherry Version"
       },
       "actions": {
         "settings": "Settings"

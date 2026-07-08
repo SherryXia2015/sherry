@@ -1,4 +1,4 @@
-_version: 1
+﻿_version: 1
 notifications:
   dashboardToggled:
     title: Panel
@@ -22,19 +22,19 @@ notifications:
     body: Perfil reactivado.
   appQuit:
     title: A punto de salir
-    body: Clash Verge está a punto de salir.
+    body: Sherry está a punto de salir.
   appHidden:
     title: Aplicación oculta
-    body: Clash Verge se está ejecutando en segundo plano.
+    body: Sherry se está ejecutando en segundo plano.
   updateReady:
-    title: Clash Verge Update
+    title: Sherry Update
     body: A new version (v{version}) has been downloaded and is ready to install.
     installNow: Install Now
     later: Later
 service:
-  adminInstallPrompt: Instalar el servicio de Clash Verge requiere privilegios de administrador.
-  adminUninstallPrompt: Desinstalar el servicio de Clash Verge requiere privilegios de administrador.
-  translocatedCorePath: Clash Verge is running from a temporary (App Translocation) path and can't locate the core. Please move Clash Verge into the Applications folder and reopen it.
+  adminInstallPrompt: Instalar el servicio de Sherry requiere privilegios de administrador.
+  adminUninstallPrompt: Desinstalar el servicio de Sherry requiere privilegios de administrador.
+  translocatedCorePath: Sherry is running from a temporary (App Translocation) path and can't locate the core. Please move Sherry into the Applications folder and reopen it.
 tray:
   dashboard: Panel
   ruleMode: Modo de reglas

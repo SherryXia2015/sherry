@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "tooltips": {
       "lightweightMode": "Leichtgewichtiger Modus",
@@ -57,7 +57,7 @@
         "autoLaunch": "Beim Start automatisch starten",
         "runningMode": "Betriebsmodus",
         "lastCheckUpdate": "Letzte Aktualitätsprüfung",
-        "vergeVersion": "Verge-Version"
+        "vergeVersion": "Sherry Version"
       },
       "actions": {
         "settings": "Einstellungen"

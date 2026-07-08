@@ -1,4 +1,4 @@
-_version: 1
+﻿_version: 1
 notifications:
   dashboardToggled:
     title: لوحة التحكم
@@ -22,19 +22,19 @@ notifications:
     body: تمت إعادة تفعيل الملف التعريفي.
   appQuit:
     title: على وشك الخروج
-    body: Clash Verge على وشك الخروج.
+    body: Sherry على وشك الخروج.
   appHidden:
     title: تم إخفاء التطبيق
-    body: Clash Verge يعمل في الخلفية.
+    body: Sherry يعمل في الخلفية.
   updateReady:
-    title: Clash Verge Update
+    title: Sherry Update
     body: A new version (v{version}) has been downloaded and is ready to install.
     installNow: Install Now
     later: Later
 service:
-  adminInstallPrompt: يتطلب تثبيت خدمة Clash Verge صلاحيات المسؤول.
-  adminUninstallPrompt: يتطلب إلغاء تثبيت خدمة Clash Verge صلاحيات المسؤول.
-  translocatedCorePath: Clash Verge is running from a temporary (App Translocation) path and can't locate the core. Please move Clash Verge into the Applications folder and reopen it.
+  adminInstallPrompt: يتطلب تثبيت خدمة Sherry صلاحيات المسؤول.
+  adminUninstallPrompt: يتطلب إلغاء تثبيت خدمة Sherry صلاحيات المسؤول.
+  translocatedCorePath: Sherry is running from a temporary (App Translocation) path and can't locate the core. Please move Sherry into the Applications folder and reopen it.
 tray:
   dashboard: لوحة التحكم
   ruleMode: وضع القواعد

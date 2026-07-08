@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "actions": {
       "manual": "دليل",
@@ -197,7 +197,7 @@
           "liteModeSettings": "LightWeight Mode Settings",
           "exit": "خروج",
           "exportDiagnostics": "Export Diagnostic Info",
-          "vergeVersion": "إصدار Verge"
+          "vergeVersion": "إصدار Sherry"
         }
       },
       "theme": {

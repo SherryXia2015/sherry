@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "tooltips": {
       "lightweightMode": "Mode Ringan",
@@ -57,7 +57,7 @@
         "autoLaunch": "Peluncuran Otomatis",
         "runningMode": "Running Mode",
         "lastCheckUpdate": "Last Check Update",
-        "vergeVersion": "Versi Verge"
+        "vergeVersion": "Versi Sherry"
       },
       "actions": {
         "settings": "Pengaturan"

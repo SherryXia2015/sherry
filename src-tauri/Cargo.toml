@@ -1,11 +1,11 @@
 [package]
-name = "clash-verge"
+name = "sherry"
 version = "2.5.2"
-description = "clash verge"
+description = "sherry"
 authors = ["zzzgydi", "Tunglies", "wonfen", "MystiPanda"]
 license = "GPL-3.0-only"
 repository = "https://github.com/clash-verge-rev/clash-verge-rev.git"
-default-run = "clash-verge"
+default-run = "sherry"
 build = "build.rs"
 edition = "2024"
 rust-version = "1.95"

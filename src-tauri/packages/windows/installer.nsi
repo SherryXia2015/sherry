@@ -1,4 +1,4 @@
-Unicode true
+﻿Unicode true
 ManifestDPIAware true
 ; Add in `dpiAwareness` `PerMonitorV2` to manifest for Windows 10 1607+ (note this should not affect lower versions since they should be able to ignore this and pick up `dpiAware` `true` set by `ManifestDPIAware true`)
 ; Currently undocumented on NSIS's website but is in the Docs folder of source tree, see
@@ -907,13 +907,13 @@ Section Install
   StrCpy $R1 "Software\Microsoft\Windows\CurrentVersion\Run"
 
   SetRegView 64
-  ReadRegStr $R2 HKCU "$R1" "Clash Verge"
+  ReadRegStr $R2 HKCU "$R1" "Sherry"
   ${If} $R2 != ""
-    DeleteRegValue HKCU "$R1" "Clash Verge"
+    DeleteRegValue HKCU "$R1" "Sherry"
   ${EndIf}
-  ReadRegStr $R2 HKLM "$R1" "Clash Verge"
+  ReadRegStr $R2 HKLM "$R1" "Sherry"
   ${If} $R2 != ""
-    DeleteRegValue HKLM "$R1" "Clash Verge"
+    DeleteRegValue HKLM "$R1" "Sherry"
   ${EndIf}
   ReadRegStr $R2 HKCU "$R1" "clash-verge"
   ${If} $R2 != ""
@@ -925,8 +925,8 @@ Section Install
   ${EndIf}
 
   ; Remove legacy executables
-  IfFileExists "$INSTDIR\Clash Verge.exe" 0 +2
-    Delete "$INSTDIR\Clash Verge.exe"
+  IfFileExists "$INSTDIR\Sherry.exe" 0 +2
+    Delete "$INSTDIR\Sherry.exe"
 
   !insertmacro SetContext
 
@@ -1081,13 +1081,13 @@ Section Uninstall
   StrCpy $R1 "Software\Microsoft\Windows\CurrentVersion\Run"
 
   SetRegView 64
-  ReadRegStr $R2 HKCU "$R1" "Clash Verge"
+  ReadRegStr $R2 HKCU "$R1" "Sherry"
   ${If} $R2 != ""
-    DeleteRegValue HKCU "$R1" "Clash Verge"
+    DeleteRegValue HKCU "$R1" "Sherry"
   ${EndIf}
-  ReadRegStr $R2 HKLM "$R1" "Clash Verge"
+  ReadRegStr $R2 HKLM "$R1" "Sherry"
   ${If} $R2 != ""
-    DeleteRegValue HKLM "$R1" "Clash Verge"
+    DeleteRegValue HKLM "$R1" "Sherry"
   ${EndIf}
   ReadRegStr $R2 HKCU "$R1" "clash-verge"
   ${If} $R2 != ""
@@ -1099,8 +1099,8 @@ Section Uninstall
   ${EndIf}
 
   ; Remove legacy executables
-  IfFileExists "$INSTDIR\Clash Verge.exe" 0 +2
-    Delete "$INSTDIR\Clash Verge.exe"
+  IfFileExists "$INSTDIR\Sherry.exe" 0 +2
+    Delete "$INSTDIR\Sherry.exe"
 
   !insertmacro SetContext
 
@@ -1171,7 +1171,7 @@ Section Uninstall
     ${EndIf}
 
     ; Remove legacy public desktop shortcuts
-    Delete "C:\Users\Public\Desktop\Clash Verge.lnk"
+    Delete "C:\Users\Public\Desktop\Sherry.lnk"
     Delete "C:\Users\Public\Desktop\clash-verge.lnk"
 
     ; Remove legacy shortcuts from all user desktops
@@ -1186,7 +1186,7 @@ Section Uninstall
       ReadRegStr $R3 HKLM "SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\$R2" "ProfileImagePath"
       ${If} $R3 != ""
         StrCpy $R4 "$R3\Desktop"
-        Delete "$R4\Clash Verge.lnk"
+        Delete "$R4\Sherry.lnk"
         Delete "$R4\clash-verge.lnk"
       ${EndIf}
       IntOp $R1 $R1 + 1
@@ -1196,22 +1196,22 @@ Section Uninstall
 
     ; Remove legacy start menu folders
     SetShellVarContext current
-    RMDir /r /REBOOTOK "$SMPROGRAMS\Clash Verge"
+    RMDir /r /REBOOTOK "$SMPROGRAMS\Sherry"
     RMDir /r /REBOOTOK "$SMPROGRAMS\clash-verge"
     !insertmacro SetContext
-    RMDir /r /REBOOTOK "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Clash Verge"
+    RMDir /r /REBOOTOK "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sherry"
     RMDir /r /REBOOTOK "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\clash-verge"
 
     ; Clean legacy registry keys
     SetRegView 64
-    DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Clash Verge.exe"
+    DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Sherry.exe"
     DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\clash-verge.exe"
-    DeleteRegKey HKLM "Software\Clash Verge Rev"
-    DeleteRegKey HKLM "Software\Clash Verge"
-    DeleteRegKey HKCU "Software\Clash Verge Rev"
-    DeleteRegKey HKCU "Software\Clash Verge"
+    DeleteRegKey HKLM "Software\Sherry"
+    DeleteRegKey HKLM "Software\Sherry"
+    DeleteRegKey HKCU "Software\Sherry"
+    DeleteRegKey HKCU "Software\Sherry"
     DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\ClashVerge"
-    DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Clash Verge"
+    DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Sherry"
 
     StrCpy $R1 0
     LegacyUninstallLoop:
@@ -1221,7 +1221,7 @@ Section Uninstall
       ${EndIf}
       ReadRegStr $R3 HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$R2" "DisplayName"
       ${If} $R3 != ""
-        StrCmp $R3 "Clash Verge" 0 +3
+        StrCmp $R3 "Sherry" 0 +3
         StrCmp $R3 "clash-verge" 0 +2
         DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$R2"
       ${EndIf}

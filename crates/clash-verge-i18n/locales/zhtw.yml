@@ -1,4 +1,4 @@
-_version: 1
+﻿_version: 1
 notifications:
   dashboardToggled:
     title: 儀表板
@@ -22,19 +22,19 @@ notifications:
     body: 訂閱已啟用。
   appQuit:
     title: 即將退出
-    body: Clash Verge 即將退出。
+    body: Sherry 即將退出。
   appHidden:
     title: 應用已隱藏
-    body: Clash Verge 正在背景執行。
+    body: Sherry 正在背景執行。
   updateReady:
-    title: Clash Verge Update
+    title: Sherry Update
     body: A new version (v{version}) has been downloaded and is ready to install.
     installNow: Install Now
     later: Later
 service:
-  adminInstallPrompt: 安裝 Clash Verge 服務需要管理員權限
-  adminUninstallPrompt: 卸载 Clash Verge 服務需要管理員權限
-  translocatedCorePath: Clash Verge is running from a temporary (App Translocation) path and can't locate the core. Please move Clash Verge into the Applications folder and reopen it.
+  adminInstallPrompt: 安裝 Sherry 服務需要管理員權限
+  adminUninstallPrompt: 卸载 Sherry 服務需要管理員權限
+  translocatedCorePath: Sherry is running from a temporary (App Translocation) path and can't locate the core. Please move Sherry into the Applications folder and reopen it.
 tray:
   dashboard: 儀表板
   ruleMode: 規則模式

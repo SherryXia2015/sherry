@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "tooltips": {
       "lightweightMode": "Җиңел Режим",
@@ -57,7 +57,7 @@
         "autoLaunch": "Автостарт",
         "runningMode": "Running Mode",
         "lastCheckUpdate": "Last Check Update",
-        "vergeVersion": "Verge версиясе"
+        "vergeVersion": "Sherry версиясе"
       },
       "actions": {
         "settings": "Көйләүләр"

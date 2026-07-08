@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "actions": {
       "manual": "Manual de uso",
@@ -197,7 +197,7 @@
           "liteModeSettings": "Configuración del modo ligero",
           "exit": "Salir",
           "exportDiagnostics": "Exportar información de diagnóstico",
-          "vergeVersion": "Versión de Verge"
+          "vergeVersion": "Versión de Sherry"
         }
       },
       "theme": {

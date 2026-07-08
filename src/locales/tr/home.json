@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "tooltips": {
       "lightweightMode": "Hafif Mod",
@@ -57,7 +57,7 @@
         "autoLaunch": "Otomatik Başlatma",
         "runningMode": "Çalışma Modu",
         "lastCheckUpdate": "Son Güncelleme Kontrolü",
-        "vergeVersion": "Verge Sürümü"
+        "vergeVersion": "Sherry Sürümü"
       },
       "actions": {
         "settings": "Ayarlar"

@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "actions": {
       "manual": "Bedienungsanleitung",
@@ -197,7 +197,7 @@
           "liteModeSettings": "Einstellungen für den Leichtgewichtigen Modus",
           "exit": "Beenden",
           "exportDiagnostics": "Diagnoseinformationen exportieren",
-          "vergeVersion": "Verge-Version"
+          "vergeVersion": "Sherry Version"
         }
       },
       "theme": {

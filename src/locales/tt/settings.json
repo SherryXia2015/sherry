@@ -1,4 +1,4 @@
-{
+﻿{
   "page": {
     "actions": {
       "manual": "Документация",
@@ -197,7 +197,7 @@
           "liteModeSettings": "LightWeight Mode Settings",
           "exit": "Чыгу",
           "exportDiagnostics": "Export Diagnostic Info",
-          "vergeVersion": "Verge версиясе"
+          "vergeVersion": "Sherry версиясе"
         }
       },
       "theme": {
