@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: داشبورد
@@ -57,9 +57,9 @@ tray:
   openDir: باز کردن پوشه
   appLog: گزارش برنامه
   coreLog: گزارش هسته
-  restartClash: راه‌اندازی مجدد هسته Clash
+  restartClash: راه‌اندازی مجدد هسته
   restartApp: راه‌اندازی مجدد برنامه
-  vergeVersion: نسخه Verge
+  vergeVersion: نسخه Sherry
   more: بیشتر
   exit: خروج
   tooltip:

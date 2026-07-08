@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: Übersicht
@@ -57,9 +57,9 @@ tray:
   openDir: Verzeichnis öffnen
   appLog: Anwendungslog
   coreLog: Core-Log
-  restartClash: Clash-Core neu starten
+  restartClash: Core neu starten
   restartApp: Anwendung neu starten
-  vergeVersion: Verge-Version
+  vergeVersion: Sherry-Version
   more: Mehr
   exit: Beenden
   tooltip:

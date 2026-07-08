@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: 대시보드
@@ -57,9 +57,9 @@ tray:
   openDir: 디렉터리 열기
   appLog: 애플리케이션 로그
   coreLog: 코어 로그
-  restartClash: Clash 코어 재시작
+  restartClash: 코어 재시작
   restartApp: 애플리케이션 재시작
-  vergeVersion: Verge 버전
+  vergeVersion: Sherry 버전
   more: 더 보기
   exit: 종료
   tooltip:

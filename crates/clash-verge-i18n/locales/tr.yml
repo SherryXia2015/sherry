@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: Gösterge Paneli
@@ -57,9 +57,9 @@ tray:
   openDir: Dizini Aç
   appLog: Uygulama Günlüğü
   coreLog: Çekirdek Günlüğü
-  restartClash: Clash Çekirdeğini Yeniden Başlat
+  restartClash: Çekirdeği Yeniden Başlat
   restartApp: Uygulamayı Yeniden Başlat
-  vergeVersion: Verge Sürümü
+  vergeVersion: Sherry Sürümü
   more: Daha Fazla
   exit: Çıkış
   tooltip:

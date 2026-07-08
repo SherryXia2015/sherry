@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: Панель
@@ -57,9 +57,9 @@ tray:
   openDir: Открыть каталог
   appLog: Журнал приложения
   coreLog: Журнал ядра
-  restartClash: Перезапустить ядро Clash
+  restartClash: Перезапустить ядро
   restartApp: Перезапустить приложение
-  vergeVersion: Версия Verge
+  vergeVersion: Версия Sherry
   more: Еще
   exit: Выход
   tooltip:

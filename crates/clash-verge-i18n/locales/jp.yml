@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: ダッシュボード
@@ -57,9 +57,9 @@ tray:
   openDir: ディレクトリを開く
   appLog: アプリケーションログ
   coreLog: コアログ
-  restartClash: Clash コアを再起動
+  restartClash: コアを再起動
   restartApp: アプリケーションを再起動
-  vergeVersion: Verge バージョン
+  vergeVersion: Sherry バージョン
   more: その他
   exit: 終了
   tooltip:

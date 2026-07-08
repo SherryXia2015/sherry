@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: لوحة التحكم
@@ -57,9 +57,9 @@ tray:
   openDir: فتح الدليل
   appLog: سجل التطبيق
   coreLog: سجل النواة
-  restartClash: إعادة تشغيل نواة Clash
+  restartClash: إعادة تشغيل النواة
   restartApp: إعادة تشغيل التطبيق
-  vergeVersion: إصدار Verge
+  vergeVersion: إصدار Sherry
   more: المزيد
   exit: خروج
   tooltip:

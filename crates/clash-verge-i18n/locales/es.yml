@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: Panel
@@ -57,9 +57,9 @@ tray:
   openDir: Abrir directorio
   appLog: Registro de la aplicación
   coreLog: Registro del núcleo
-  restartClash: Reiniciar el núcleo de Clash
+  restartClash: Reiniciar el núcleo
   restartApp: Reiniciar aplicación
-  vergeVersion: Versión de Verge
+  vergeVersion: Versión de Sherry
   more: Más
   exit: Salir
   tooltip:

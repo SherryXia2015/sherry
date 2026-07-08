@@ -1,4 +1,4 @@
-﻿_version: 1
+_version: 1
 notifications:
   dashboardToggled:
     title: Dasbor
@@ -57,9 +57,9 @@ tray:
   openDir: Buka Direktori
   appLog: Log Aplikasi
   coreLog: Log Core
-  restartClash: Mulai Ulang Core Clash
+  restartClash: Mulai Ulang Core
   restartApp: Mulai Ulang Aplikasi
-  vergeVersion: Versi Verge
+  vergeVersion: Versi Sherry
   more: Lainnya
   exit: Keluar
   tooltip:
