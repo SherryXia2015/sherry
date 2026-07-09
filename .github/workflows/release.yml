@@ -262,7 +262,7 @@ jobs:
           uploadUpdaterJson: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
 
       - name: Attest Windows bundles
-        if: matrix.os == 'windows-latest'
+        if: ${{ matrix.os == 'windows-latest' && !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
         uses: actions/attest-build-provenance@v4
         with:
           subject-path: target/${{ matrix.target }}/release/bundle/nsis/*setup*
@@ -444,6 +444,7 @@ jobs:
           }
 
       - name: Attest Windows bundles
+        if: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
         uses: actions/attest-build-provenance@v4
         with:
           subject-path: target/${{ matrix.target }}/release/bundle/nsis/*setup*
