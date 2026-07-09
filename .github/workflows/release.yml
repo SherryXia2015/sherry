@@ -28,6 +28,7 @@ jobs:
 
   update_tag:
     name: Update tag
+    if: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
     runs-on: ubuntu-latest
     needs: [release, release-for-fixed-webview2]
     steps:
