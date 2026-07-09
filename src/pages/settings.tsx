@@ -20,15 +20,15 @@ const SettingPage = () => {
   }
 
   const toGithubRepo = useLockFn(() => {
-    return openWebUrl('https://github.com/clash-verge-rev/clash-verge-rev')
+    return openWebUrl('https://github.com/SherryXia2015/sherry')
   })
 
   const toGithubDoc = useLockFn(() => {
-    return openWebUrl('https://clash-verge-rev.github.io/index.html')
+    return openWebUrl('https://github.com/SherryXia2015/sherry#readme')
   })
 
   const toTelegramChannel = useLockFn(() => {
-    return openWebUrl('https://t.me/clash_verge_re')
+    return openWebUrl('https://github.com/SherryXia2015/sherry')
   })
 
   const mode = useThemeMode()

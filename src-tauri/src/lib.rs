@@ -239,7 +239,7 @@ pub fn run() {
                     .map(|s| (*s).to_string())
                     .or_else(|| panic.downcast_ref::<String>().cloned())
                     .unwrap_or_else(|| "unknown panic payload".to_string());
-                eprintln!("[clash-verge] panic during app setup ({stage}), continuing in degraded mode: {msg}");
+                eprintln!("[sherry] panic during app setup ({stage}), continuing in degraded mode: {msg}");
                 logging!(
                     error,
                     Type::Setup,

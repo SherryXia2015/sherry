@@ -139,7 +139,7 @@ fn macos_core_path_in_install_roots<'a>(
 
 #[cfg(target_os = "macos")]
 const fn macos_cleanup_translocated_desired_state_shell() -> &'static str {
-    "for f in '/var/root/.local/state/clash-verge-service/desired-state.json' '/var/lib/clash-verge-service/desired-state.json'; do if [ -f \"$f\" ] && /usr/bin/grep -q AppTranslocation \"$f\"; then backup=\"$f.apptranslocation.bak\"; if [ -e \"$backup\" ]; then backup=\"$f.apptranslocation.$(/bin/date +%s).bak\"; fi; /bin/mv \"$f\" \"$backup\"; fi; done"
+    "for f in '/var/root/.local/state/sherry-service/desired-state.json' '/var/lib/sherry-service/desired-state.json'; do if [ -f \"$f\" ] && /usr/bin/grep -q AppTranslocation \"$f\"; then backup=\"$f.apptranslocation.bak\"; if [ -e \"$backup\" ]; then backup=\"$f.apptranslocation.$(/bin/date +%s).bak\"; fi; /bin/mv \"$f\" \"$backup\"; fi; done"
 }
 
 /// 卸载服务前以 root 清理残留 core 和 IPC 套接字。
@@ -406,7 +406,7 @@ fn install_service() -> Result<()> {
     let prompt = clash_verge_i18n::t!("service.adminInstallPrompt");
     let install_quoted = shell_single_quote(&install_shell);
     let shell = format!(
-        "{}; sudo CLASH_VERGE_SERVICE_GID={gid} {install_quoted}",
+        "{}; sudo SHERRY_SERVICE_GID={gid} {install_quoted}",
         macos_cleanup_translocated_desired_state_shell()
     );
     let shell = escape_osascript_double_quoted_string(&shell);
@@ -744,14 +744,14 @@ mod tests {
     fn resolves_existing_core_path_from_install_roots() -> std::io::Result<()> {
         let root = test_dir("resolve-existing-core-path")?;
         let core_dir = root.join("Sherry.app").join("Contents").join("MacOS");
-        let core_path = core_dir.join("verge-mihomo");
+        let core_path = core_dir.join("sherry-core");
 
         fs::create_dir_all(&core_dir)?;
         fs::write(&core_path, b"")?;
 
         let resolved = macos_core_path_in_install_roots(
             std::ffi::OsStr::new("Sherry.app"),
-            "verge-mihomo",
+            "sherry-core",
             [root.as_path()],
         );
 

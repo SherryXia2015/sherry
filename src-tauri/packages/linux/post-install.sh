@@ -1,7 +1,7 @@
 #!/bin/bash
-chmod +x /usr/bin/clash-verge-service-install
-chmod +x /usr/bin/clash-verge-service-uninstall
-chmod +x /usr/bin/clash-verge-service
+chmod +x /usr/bin/sherry-service-install
+chmod +x /usr/bin/sherry-service-uninstall
+chmod +x /usr/bin/sherry-service
 
 . /etc/os-release
 
@@ -11,7 +11,7 @@ if [ "$ID" = "deepin" ]; then
     echo "$DESKTOP_FILES" | while IFS= read -r f; do
         if [ "$(basename "$f")" == "Sherry.desktop" ]; then
             echo "Fixing deepin desktop file"
-            mv -vf "$f" "/usr/share/applications/clash-verge.desktop"
+            mv -vf "$f" "/usr/share/applications/sherry.desktop"
         fi
     done
 fi

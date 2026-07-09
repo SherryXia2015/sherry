@@ -302,7 +302,7 @@ export function ProfileViewer({ onChange, ref }: ProfileViewerProps) {
               <TextField
                 {...text}
                 {...field}
-                placeholder={`clash-verge/v${version}`}
+                placeholder={`sherry/v${version}`}
                 label="User Agent"
               />
             )}

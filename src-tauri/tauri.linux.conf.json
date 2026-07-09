@@ -27,8 +27,8 @@
       "./sidecar/sherry-service",
       "./sidecar/sherry-service-install",
       "./sidecar/sherry-service-uninstall",
-      "./sidecar/verge-mihomo",
-      "./sidecar/verge-mihomo-alpha"
+      "./sidecar/sherry-core",
+      "./sidecar/sherry-core-alpha"
     ]
   }
 }

@@ -13,7 +13,7 @@
     ],
     "resources": ["resources"],
     "publisher": "Sherry",
-    "externalBin": ["sidecar/verge-mihomo", "sidecar/verge-mihomo-alpha"],
+    "externalBin": ["sidecar/sherry-core", "sidecar/sherry-core-alpha"],
     "copyright": "GNU General Public License v3.0",
     "category": "DeveloperTool",
     "shortDescription": "Sherry",

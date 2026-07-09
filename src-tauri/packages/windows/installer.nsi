@@ -1197,10 +1197,8 @@ Section Uninstall
     ; Remove legacy start menu folders
     SetShellVarContext current
     RMDir /r /REBOOTOK "$SMPROGRAMS\Sherry"
-    RMDir /r /REBOOTOK "$SMPROGRAMS\clash-verge"
     !insertmacro SetContext
     RMDir /r /REBOOTOK "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Sherry"
-    RMDir /r /REBOOTOK "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\clash-verge"
 
     ; Clean legacy registry keys
     SetRegView 64
