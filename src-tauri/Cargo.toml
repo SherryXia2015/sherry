@@ -4,7 +4,7 @@ version = "2.5.2"
 description = "sherry"
 authors = ["zzzgydi", "Tunglies", "wonfen", "MystiPanda"]
 license = "GPL-3.0-only"
-repository = "https://github.com/clash-verge-rev/clash-verge-rev.git"
+repository = "https://github.com/SherryXia2015/sherry.git"
 default-run = "sherry"
 build = "build.rs"
 edition = "2024"
@@ -24,7 +24,7 @@ clippy = ["tauri/test"]
 tracing = []
 
 [package.metadata.bundle]
-identifier = "io.github.clash-verge-rev.clash-verge-rev"
+identifier = "com.sherry.app"
 
 [build-dependencies]
 tauri-build = { version = "2.6.3", features = [] }
@@ -39,7 +39,6 @@ tauri-plugin-clash-verge-sysinfo = { workspace = true }
 tauri-plugin-clipboard-manager = { workspace = true }
 tauri = { workspace = true, features = [
   "protocol-asset",
-  "devtools",
   "tray-icon",
   "image-ico",
   "image-png",

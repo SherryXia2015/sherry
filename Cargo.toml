@@ -11,14 +11,14 @@ members = [
 resolver = "2"
 
 [profile.release]
-panic = "unwind"
-codegen-units = 1
-lto = "thin"
-opt-level = 3
-debug = 1
-strip = "none"
+panic = "abort"          # 发生 Panic 时直接中止，避免引入复杂的栈回溯代码
+codegen-units = 1       # 减少并行编译单元，生成更整洁的二进制结构
+lto = true              # 开启完整链接时优化（比 thin 更彻底）
+opt-level = "z"         # 优化产物体积（比 3 更小）
+debug = false           # 不生成任何调试信息
+strip = true            # 移除所有符号和调试信息，隐蔽开发环境路径
 overflow-checks = false
-split-debuginfo = "unpacked"
+split-debuginfo = "off" # 关闭分离调试信息文件
 rpath = false
 
 [profile.dev]
