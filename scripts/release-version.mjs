@@ -289,10 +289,6 @@ async function main(versionArg) {
         newVersion = `${baseVersion}-${versionArg.toLowerCase()}`
       }
     } else {
-      if (!isValidVersion(versionArg)) {
-        console.error('Error: Invalid version format')
-        process.exit(1)
-      }
       newVersion = normalizeVersion(versionArg)
     }
 
