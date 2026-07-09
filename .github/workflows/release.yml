@@ -21,7 +21,7 @@ concurrency:
 jobs:
   check_tag_version:
     name: Skip Check Release Tag and Version
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Skip checks
         run: echo "Skipped checks"
