@@ -5,8 +5,7 @@ build-windows:
   stage: build
   tags:
     - windows # 确保你的 GitLab Runner 有 'windows' 标签且运行在 Windows 物理机或虚拟机上
-  only:
-    - tags # 只有推送 v*.*.* 格式的 tag 时才触发打包
+  # 去掉了 only: - tags，这样在任何分支推送（如 dev）或者 tag 推送时，都会进行编译和打包测试
   variables:
     NODE_OPTIONS: "--max_old_space_size=4096"
   script:
@@ -44,7 +43,8 @@ build-windows:
     - pnpm run build -- --target x86_64-pc-windows-msvc
 
   artifacts:
-    name: "sherry-windows-setup-${CI_COMMIT_TAG}"
+    # 使用 CI_COMMIT_REF_NAME（可以是分支名如 dev，也可以是 tag 名），防止 CI_COMMIT_TAG 为空时报错
+    name: "sherry-windows-setup-${CI_COMMIT_REF_NAME}"
     paths:
       # 保存打包生成的安装包文件
       - src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*setup.exe
