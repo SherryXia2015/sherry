@@ -258,7 +258,7 @@ jobs:
           prerelease: ${{ contains(github.ref_name, '-rc') }}
           tauriScript: pnpm
           args: --target ${{ matrix.target }}
-          includeUpdaterJson: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
+          uploadUpdaterJson: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
 
       - name: Attest Windows bundles
         if: matrix.os == 'windows-latest'
