@@ -294,8 +294,8 @@ function clashMetaAlpha() {
   const isWin = platform === 'win32'
   const urlExt = isWin ? 'zip' : 'gz'
   return {
-    name: 'verge-mihomo-alpha',
-    targetFile: `verge-mihomo-alpha-${SIDECAR_HOST}${isWin ? '.exe' : ''}`,
+    name: 'sherry-core-alpha',
+    targetFile: `sherry-core-alpha-${SIDECAR_HOST}${isWin ? '.exe' : ''}`,
     exeFile: `${name}${isWin ? '.exe' : ''}`,
     zipFile: `${name}-${META_ALPHA_VERSION}.${urlExt}`,
     downloadURL: `${META_ALPHA_URL_PREFIX}/${name}-${META_ALPHA_VERSION}.${urlExt}`,
@@ -307,8 +307,8 @@ function clashMeta() {
   const isWin = platform === 'win32'
   const urlExt = isWin ? 'zip' : 'gz'
   return {
-    name: 'verge-mihomo',
-    targetFile: `verge-mihomo-${SIDECAR_HOST}${isWin ? '.exe' : ''}`,
+    name: 'sherry-core',
+    targetFile: `sherry-core-${SIDECAR_HOST}${isWin ? '.exe' : ''}`,
     exeFile: `${name}${isWin ? '.exe' : ''}`,
     zipFile: `${name}-${META_VERSION}.${urlExt}`,
     downloadURL: `${META_URL_PREFIX}/${META_VERSION}/${name}-${META_VERSION}.${urlExt}`,
@@ -540,9 +540,9 @@ const resolvePlugin = async () => {
 // service chmod (保留并使用 glob)
 const resolveServicePermission = async () => {
   const serviceExecutables = [
-    'clash-verge-service*',
-    'clash-verge-service-install*',
-    'clash-verge-service-uninstall*',
+    'sherry-service*',
+    'sherry-service-install*',
+    'sherry-service-uninstall*',
   ]
   const hashCache = await loadHashCache()
   let hasChanges = false
@@ -591,9 +591,10 @@ const SERVICE_BINARIES = [
 function serviceFileInfo(name) {
   const ext = platform === 'win32' ? '.exe' : ''
   const suffix = platform === 'linux' ? '-' + SIDECAR_HOST : ''
+  const targetName = name.replace('clash-verge-service', 'sherry-service')
   return {
     sourceFile: `${name}${ext}`,
-    targetFile: `${name}${suffix}${ext}`,
+    targetFile: `${targetName}${suffix}${ext}`,
   }
 }
 
@@ -752,13 +753,13 @@ const resolveUnSetDnsScript = () =>
 // =======================
 const tasks = [
   {
-    name: 'verge-mihomo-alpha',
+    name: 'sherry-core-alpha',
     func: () =>
       getLatestAlphaVersion().then(() => resolveSidecar(clashMetaAlpha())),
     retry: 5,
   },
   {
-    name: 'verge-mihomo',
+    name: 'sherry-core',
     func: () =>
       getLatestReleaseVersion().then(() => resolveSidecar(clashMeta())),
     retry: 5,

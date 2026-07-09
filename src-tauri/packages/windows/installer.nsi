@@ -551,67 +551,67 @@ FunctionEnd
     !endif
   ${EndIf}
 
-  ; Check if verge-mihomo-alpha.exe is running
+  ; Check if sherry-core-alpha.exe is running
   !if "${INSTALLMODE}" == "currentUser"
-    nsis_tauri_utils::FindProcessCurrentUser "verge-mihomo-alpha.exe"
+    nsis_tauri_utils::FindProcessCurrentUser "sherry-core-alpha.exe"
   !else
-    nsis_tauri_utils::FindProcess "verge-mihomo-alpha.exe"
+    nsis_tauri_utils::FindProcess "sherry-core-alpha.exe"
   !endif
   Pop $R0
   ${If} $R0 = 0
-    DetailPrint "Kill verge-mihomo-alpha.exe..."
+    DetailPrint "Kill sherry-core-alpha.exe..."
     !if "${INSTALLMODE}" == "currentUser"
-      nsis_tauri_utils::KillProcessCurrentUser "verge-mihomo-alpha.exe"
+      nsis_tauri_utils::KillProcessCurrentUser "sherry-core-alpha.exe"
     !else
-      nsis_tauri_utils::KillProcess "verge-mihomo-alpha.exe"
+      nsis_tauri_utils::KillProcess "sherry-core-alpha.exe"
     !endif
   ${EndIf}
 
-  ; Check if verge-mihomo.exe is running
+  ; Check if sherry-core.exe is running
   !if "${INSTALLMODE}" == "currentUser"
-    nsis_tauri_utils::FindProcessCurrentUser "verge-mihomo.exe"
+    nsis_tauri_utils::FindProcessCurrentUser "sherry-core.exe"
   !else
-    nsis_tauri_utils::FindProcess "verge-mihomo.exe"
+    nsis_tauri_utils::FindProcess "sherry-core.exe"
   !endif
   Pop $R0
   ${If} $R0 = 0
-    DetailPrint "Kill verge-mihomo.exe..."
+    DetailPrint "Kill sherry-core.exe..."
     !if "${INSTALLMODE}" == "currentUser"
-      nsis_tauri_utils::KillProcessCurrentUser "verge-mihomo.exe"
+      nsis_tauri_utils::KillProcessCurrentUser "sherry-core.exe"
     !else
-      nsis_tauri_utils::KillProcess "verge-mihomo.exe"
+      nsis_tauri_utils::KillProcess "sherry-core.exe"
     !endif
   ${EndIf}
 
-  ; Check if clash-meta-alpha.exe is running
+  ; Check if sherry-core-alpha.exe is running
   !if "${INSTALLMODE}" == "currentUser"
-    nsis_tauri_utils::FindProcessCurrentUser "clash-meta-alpha.exe"
+    nsis_tauri_utils::FindProcessCurrentUser "sherry-core-alpha.exe"
   !else
-    nsis_tauri_utils::FindProcess "clash-meta-alpha.exe"
+    nsis_tauri_utils::FindProcess "sherry-core-alpha.exe"
   !endif
   Pop $R0
   ${If} $R0 = 0
-    DetailPrint "Kill clash-meta-alpha.exe..."
+    DetailPrint "Kill sherry-core-alpha.exe..."
     !if "${INSTALLMODE}" == "currentUser"
-      nsis_tauri_utils::KillProcessCurrentUser "clash-meta-alpha.exe"
+      nsis_tauri_utils::KillProcessCurrentUser "sherry-core-alpha.exe"
     !else
-      nsis_tauri_utils::KillProcess "clash-meta-alpha.exe"
+      nsis_tauri_utils::KillProcess "sherry-core-alpha.exe"
     !endif
   ${EndIf}
 
-  ; Check if clash-meta.exe is running
+  ; Check if sherry-core.exe is running
   !if "${INSTALLMODE}" == "currentUser"
-    nsis_tauri_utils::FindProcessCurrentUser "clash-meta.exe"
+    nsis_tauri_utils::FindProcessCurrentUser "sherry-core.exe"
   !else
-    nsis_tauri_utils::FindProcess "clash-meta.exe"
+    nsis_tauri_utils::FindProcess "sherry-core.exe"
   !endif
   Pop $R0
   ${If} $R0 = 0
-    DetailPrint "Kill clash-meta.exe..."
+    DetailPrint "Kill sherry-core.exe..."
     !if "${INSTALLMODE}" == "currentUser"
-      nsis_tauri_utils::KillProcessCurrentUser "clash-meta.exe"
+      nsis_tauri_utils::KillProcessCurrentUser "sherry-core.exe"
     !else
-      nsis_tauri_utils::KillProcess "clash-meta.exe"
+      nsis_tauri_utils::KillProcess "sherry-core.exe"
     !endif
   ${EndIf}
 !macroend
