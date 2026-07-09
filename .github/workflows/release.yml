@@ -173,6 +173,33 @@ jobs:
           pnpm i
           pnpm run prebuild ${{ matrix.target }}
 
+      - name: Configure and Import Windows Code Signing Certificate
+        if: env.HAS_CERT == 'true'
+        env:
+          HAS_CERT: ${{ secrets.WIN_SIGNING_CERT_BASE64 != '' }}
+        shell: powershell
+        run: |
+          $certBase64 = "${{ secrets.WIN_SIGNING_CERT_BASE64 }}"
+          $certPassword = "${{ secrets.WIN_SIGNING_CERT_PASSWORD }}"
+          $certThumbprint = "${{ secrets.WIN_SIGNING_CERT_THUMBPRINT }}"
+          
+          $certBytes = [System.Convert]::FromBase64String($certBase64)
+          $tempPfx = [System.IO.Path]::GetTempFileName() + ".pfx"
+          [System.IO.File]::WriteAllBytes($tempPfx, $certBytes)
+          
+          $secPassword = ConvertTo-SecureString $certPassword -AsPlainText -Force
+          Import-PfxCertificate -FilePath $tempPfx -CertStoreLocation Cert:\CurrentUser\My -Password $secPassword
+          Remove-Item $tempPfx
+          
+          $confPath = "src-tauri/tauri.windows.conf.json"
+          if (Test-Path $confPath) {
+            $content = Get-Content $confPath -Raw
+            $content = $content -replace '"certificateThumbprint":\s*null', ('"certificateThumbprint": "' + $certThumbprint + '"')
+            $content = $content -replace '"timestampUrl":\s*""', '"timestampUrl": "http://timestamp.digicert.com"'
+            Set-Content $confPath $content -NoNewline
+            Write-Host "Updated tauri.windows.conf.json with thumbprint: $certThumbprint"
+          }
+
       - name: Add Rust Target
         run: |
           # Ensure cross target is installed for the pinned toolchain; fallback without explicit toolchain if needed
@@ -272,6 +299,33 @@ jobs:
           Expand .\Microsoft.WebView2.FixedVersionRuntime.133.0.3065.92.${{ matrix.arch }}.cab -F:* ./src-tauri
           Remove-Item .\src-tauri\tauri.windows.conf.json
           Rename-Item .\src-tauri\webview2.${{ matrix.arch }}.json tauri.windows.conf.json
+
+      - name: Configure and Import Windows Code Signing Certificate
+        if: env.HAS_CERT == 'true'
+        env:
+          HAS_CERT: ${{ secrets.WIN_SIGNING_CERT_BASE64 != '' }}
+        shell: powershell
+        run: |
+          $certBase64 = "${{ secrets.WIN_SIGNING_CERT_BASE64 }}"
+          $certPassword = "${{ secrets.WIN_SIGNING_CERT_PASSWORD }}"
+          $certThumbprint = "${{ secrets.WIN_SIGNING_CERT_THUMBPRINT }}"
+          
+          $certBytes = [System.Convert]::FromBase64String($certBase64)
+          $tempPfx = [System.IO.Path]::GetTempFileName() + ".pfx"
+          [System.IO.File]::WriteAllBytes($tempPfx, $certBytes)
+          
+          $secPassword = ConvertTo-SecureString $certPassword -AsPlainText -Force
+          Import-PfxCertificate -FilePath $tempPfx -CertStoreLocation Cert:\CurrentUser\My -Password $secPassword
+          Remove-Item $tempPfx
+          
+          $confPath = "src-tauri/tauri.windows.conf.json"
+          if (Test-Path $confPath) {
+            $content = Get-Content $confPath -Raw
+            $content = $content -replace '"certificateThumbprint":\s*null', ('"certificateThumbprint": "' + $certThumbprint + '"')
+            $content = $content -replace '"timestampUrl":\s*""', '"timestampUrl": "http://timestamp.digicert.com"'
+            Set-Content $confPath $content -NoNewline
+            Write-Host "Updated tauri.windows.conf.json with thumbprint: $certThumbprint"
+          }
 
       - name: Add Rust Target
         run: |
