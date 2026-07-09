@@ -1,0 +1,51 @@
+stages:
+  - build
+
+build-windows:
+  stage: build
+  tags:
+    - windows # 确保你的 GitLab Runner 有 'windows' 标签且运行在 Windows 物理机或虚拟机上
+  only:
+    - tags # 只有推送 v*.*.* 格式的 tag 时才触发打包
+  variables:
+    NODE_OPTIONS: "--max_old_space_size=4096"
+  script:
+    # 1. 初始化 Rust target
+    - rustup target add x86_64-pc-windows-msvc
+    
+    # 2. 安装 Node 依赖并执行 prebuild 下载内核
+    - pnpm install
+    - pnpm run prebuild x86_64-pc-windows-msvc
+
+    # 3. 如果配置了证书，则动态导入证书并修改 Tauri 配置进行代码签名
+    - |
+      if ($env:WIN_SIGNING_CERT_BASE64) {
+        Write-Host "Importing code signing certificate..."
+        $certBytes = [System.Convert]::FromBase64String($env:WIN_SIGNING_CERT_BASE64)
+        $tempPfx = [System.IO.Path]::GetTempFileName() + ".pfx"
+        [System.IO.File]::WriteAllBytes($tempPfx, $certBytes)
+        $secPassword = ConvertTo-SecureString $env:WIN_SIGNING_CERT_PASSWORD -AsPlainText -Force
+        Import-PfxCertificate -FilePath $tempPfx -CertStoreLocation Cert:\CurrentUser\My -Password $secPassword
+        Remove-Item $tempPfx
+        
+        $confPath = "src-tauri/tauri.windows.conf.json"
+        if (Test-Path $confPath) {
+          $content = Get-Content $confPath -Raw
+          $content = $content -replace '"certificateThumbprint":\s*null', ('"certificateThumbprint": "' + $env:WIN_SIGNING_CERT_THUMBPRINT + '"')
+          $content = $content -replace '"timestampUrl":\s*""', '"timestampUrl": "http://timestamp.digicert.com"'
+          Set-Content $confPath $content -NoNewline
+          Write-Host "Updated tauri.windows.conf.json with thumbprint: $env:WIN_SIGNING_CERT_THUMBPRINT"
+        }
+      } else {
+        Write-Host "No signing certificate configured. Building unsigned package."
+      }
+
+    # 4. 执行正式打包构建
+    - pnpm run build -- --target x86_64-pc-windows-msvc
+
+  artifacts:
+    name: "sherry-windows-setup-${CI_COMMIT_TAG}"
+    paths:
+      # 保存打包生成的安装包文件
+      - src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*setup.exe
+    expire_in: 1 week
