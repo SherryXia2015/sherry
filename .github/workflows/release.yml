@@ -238,6 +238,7 @@ jobs:
 
       - name: Tauri build
         # 上游 5.24 修改了 latest.json 的生成逻辑，且依赖 tauri-plugin-update 2.10.0 暂未发布，故锁定在 0.5.23 版本
+        id: build
         uses: tauri-apps/tauri-action@v1.0.0
         env:
           NODE_OPTIONS: '--max_old_space_size=4096'
@@ -265,6 +266,25 @@ jobs:
         uses: actions/attest-build-provenance@v4
         with:
           subject-path: target/${{ matrix.target }}/release/bundle/nsis/*setup*
+
+      - name: Upload dev validation Windows assets
+        if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev' && matrix.os == 'windows-latest' }}
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ steps.build.outputs.appVersion }}
+          name: 'Sherry v${{ steps.build.outputs.appVersion }}'
+          body: 'See release notes for detailed changelog.'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          prerelease: false
+          files: target/${{ matrix.target }}/release/bundle/nsis/*setup*
+
+      - name: Portable Bundle
+        if: matrix.os == 'windows-latest'
+        run: pnpm portable ${{ matrix.target }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: v${{ steps.build.outputs.appVersion }}
 
       - name: Attest macOS bundles
         if: matrix.os == 'macos-latest'

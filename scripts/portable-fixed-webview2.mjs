@@ -21,20 +21,27 @@ const PROCESS_MAP = {
   arm64: 'arm64',
 }
 const arch = target ? ARCH_MAP[target] : PROCESS_MAP[process.arch]
+
+function resolveReleaseDir() {
+  const candidates = target
+    ? [`./target/${target}/release`, `./src-tauri/target/${target}/release`]
+    : ['./target/release', './src-tauri/target/release']
+
+  const releaseDir = candidates.find((candidate) => fs.existsSync(candidate))
+  if (releaseDir === undefined) {
+    throw new Error(`could not find the release dir: ${candidates.join(', ')}`)
+  }
+
+  return releaseDir
+}
+
 /// Script for ci
 /// 打包绿色版/便携版 (only Windows)
 async function resolvePortable() {
   if (process.platform !== 'win32') return
 
-  const releaseDir = target
-    ? `./src-tauri/target/${target}/release`
-    : `./src-tauri/target/release`
-
+  const releaseDir = resolveReleaseDir()
   const configDir = path.join(releaseDir, '.config')
-
-  if (!fs.existsSync(releaseDir)) {
-    throw new Error('could not found the release dir')
-  }
 
   await fsp.mkdir(configDir, { recursive: true })
   if (!fs.existsSync(path.join(configDir, 'PORTABLE'))) {
@@ -101,4 +108,7 @@ async function resolvePortable() {
   })
 }
 
-resolvePortable().catch(console.error)
+resolvePortable().catch((error) => {
+  console.error(error)
+  process.exitCode = 1
+})
