@@ -183,7 +183,7 @@ fn uninstall_service() -> Result<()> {
     use std::os::windows::process::CommandExt as _;
 
     let binary_path = dirs::service_path()?;
-    let uninstall_path = binary_path.with_file_name("clash-verge-service-uninstall.exe");
+    let uninstall_path = binary_path.with_file_name("sherry-service-uninstall.exe");
 
     if !uninstall_path.exists() {
         bail!(format!("uninstaller not found: {uninstall_path:?}"));
@@ -216,7 +216,7 @@ fn install_service() -> Result<()> {
     use std::os::windows::process::CommandExt as _;
 
     let binary_path = dirs::service_path()?;
-    let install_path = binary_path.with_file_name("clash-verge-service-install.exe");
+    let install_path = binary_path.with_file_name("sherry-service-install.exe");
 
     if !install_path.exists() {
         bail!(format!("installer not found: {install_path:?}"));
@@ -257,7 +257,7 @@ fn install_service() -> Result<()> {
 fn uninstall_service() -> Result<()> {
     logging!(info, Type::Service, "uninstall service");
 
-    let uninstall_path = tauri::utils::platform::current_exe()?.with_file_name("clash-verge-service-uninstall");
+    let uninstall_path = tauri::utils::platform::current_exe()?.with_file_name("sherry-service-uninstall");
 
     if !uninstall_path.exists() {
         bail!(format!("uninstaller not found: {uninstall_path:?}"));
@@ -303,7 +303,7 @@ fn uninstall_service() -> Result<()> {
 fn install_service() -> Result<()> {
     logging!(info, Type::Service, "install service");
 
-    let install_path = tauri::utils::platform::current_exe()?.with_file_name("clash-verge-service-install");
+    let install_path = tauri::utils::platform::current_exe()?.with_file_name("sherry-service-install");
 
     if !install_path.exists() {
         bail!(format!("installer not found: {install_path:?}"));
@@ -356,7 +356,7 @@ fn uninstall_service() -> Result<()> {
     logging!(info, Type::Service, "uninstall service");
 
     let binary_path = dirs::service_path()?;
-    let uninstall_path = binary_path.with_file_name("clash-verge-service-uninstall");
+    let uninstall_path = binary_path.with_file_name("sherry-service-uninstall");
 
     if !uninstall_path.exists() {
         bail!(format!("uninstaller not found: {uninstall_path:?}"));
@@ -392,7 +392,7 @@ fn install_service() -> Result<()> {
     logging!(info, Type::Service, "install service");
 
     let binary_path = dirs::service_path()?;
-    let install_path = binary_path.with_file_name("clash-verge-service-install");
+    let install_path = binary_path.with_file_name("sherry-service-install");
 
     if !install_path.exists() {
         bail!(format!("installer not found: {install_path:?}"));
@@ -715,7 +715,7 @@ mod tests {
     use std::fs;
 
     fn test_dir(name: &str) -> std::io::Result<PathBuf> {
-        let path = std::env::temp_dir().join(format!("clash-verge-service-path-test-{}-{name}", std::process::id()));
+        let path = std::env::temp_dir().join(format!("sherry-service-path-test-{}-{name}", std::process::id()));
         let _ = fs::remove_dir_all(&path);
         fs::create_dir_all(&path)?;
         Ok(path)
