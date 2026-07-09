@@ -8,11 +8,26 @@ build-windows:
   # 去掉了 only: - tags，这样在任何分支推送（如 dev）或者 tag 推送时，都会进行编译和打包测试
   variables:
     NODE_OPTIONS: "--max_old_space_size=4096"
+    # Cargo 编译缓存目录，加速后续构建
+    CARGO_HOME: "$CI_PROJECT_DIR/.cargo"
+
+  cache:
+    # 缓存 Cargo 编译产物，后续构建无需重新编译所有依赖
+    key: "cargo-cache-$CI_COMMIT_REF_SLUG"
+    paths:
+      - .cargo/registry/
+      - .cargo/git/
+      - src-tauri/target/
+    policy: pull-push
+
   script:
     # 1. 初始化 Rust target
     - rustup target add x86_64-pc-windows-msvc
-    
-    # 2. 安装 Node 依赖并执行 prebuild 下载内核
+
+    # 2. 安装 Node 依赖
+    #    sidecar/ 和 resources/ 已随代码一起提交，prebuild 检测到文件存在会自动跳过下载
+    - corepack enable
+    - corepack prepare pnpm@11.3.0 --activate
     - pnpm install
     - pnpm run prebuild x86_64-pc-windows-msvc
 
@@ -26,7 +41,7 @@ build-windows:
         $secPassword = ConvertTo-SecureString $env:WIN_SIGNING_CERT_PASSWORD -AsPlainText -Force
         Import-PfxCertificate -FilePath $tempPfx -CertStoreLocation Cert:\CurrentUser\My -Password $secPassword
         Remove-Item $tempPfx
-        
+
         $confPath = "src-tauri/tauri.windows.conf.json"
         if (Test-Path $confPath) {
           $content = Get-Content $confPath -Raw
