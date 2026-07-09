@@ -173,6 +173,34 @@ jobs:
           pnpm i
           pnpm run prebuild ${{ matrix.target }}
 
+      - name: Validate updater signing key
+        if: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
+        shell: powershell
+        env:
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        run: |
+          $key = $env:TAURI_PRIVATE_KEY
+          if ([string]::IsNullOrWhiteSpace($key)) {
+            throw "TAURI_PRIVATE_KEY is required for release updater artifacts."
+          }
+
+          $normalized = $key -replace "`r`n", "`n"
+          if (-not $normalized.StartsWith("untrusted comment:")) {
+            throw "TAURI_PRIVATE_KEY is not a complete Tauri updater private key. Store the full .key file content, including the 'untrusted comment:' line, in the GitHub secret."
+          }
+
+          Write-Host "Updater signing key format looks valid."
+
+      - name: Disable updater artifacts for dev workflow dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev' }}
+        shell: powershell
+        run: |
+          $configPath = "src-tauri/tauri.conf.json"
+          $config = Get-Content $configPath -Raw | ConvertFrom-Json
+          $config.bundle.createUpdaterArtifacts = $false
+          $config | ConvertTo-Json -Depth 100 | Set-Content $configPath -NoNewline
+          Write-Host "Disabled updater artifacts for dev workflow_dispatch validation build."
+
       - name: Configure and Import Windows Code Signing Certificate
         if: env.HAS_CERT == 'true'
         env:
@@ -229,7 +257,7 @@ jobs:
           prerelease: ${{ contains(github.ref_name, '-rc') }}
           tauriScript: pnpm
           args: --target ${{ matrix.target }}
-          includeUpdaterJson: true
+          includeUpdaterJson: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
 
       - name: Attest Windows bundles
         if: matrix.os == 'windows-latest'
@@ -299,6 +327,34 @@ jobs:
           Expand .\Microsoft.WebView2.FixedVersionRuntime.133.0.3065.92.${{ matrix.arch }}.cab -F:* ./src-tauri
           Remove-Item .\src-tauri\tauri.windows.conf.json
           Rename-Item .\src-tauri\webview2.${{ matrix.arch }}.json tauri.windows.conf.json
+
+      - name: Validate updater signing key
+        if: ${{ !(github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev') }}
+        shell: powershell
+        env:
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        run: |
+          $key = $env:TAURI_PRIVATE_KEY
+          if ([string]::IsNullOrWhiteSpace($key)) {
+            throw "TAURI_PRIVATE_KEY is required for release updater artifacts."
+          }
+
+          $normalized = $key -replace "`r`n", "`n"
+          if (-not $normalized.StartsWith("untrusted comment:")) {
+            throw "TAURI_PRIVATE_KEY is not a complete Tauri updater private key. Store the full .key file content, including the 'untrusted comment:' line, in the GitHub secret."
+          }
+
+          Write-Host "Updater signing key format looks valid."
+
+      - name: Disable updater artifacts for dev workflow dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev' }}
+        shell: powershell
+        run: |
+          $configPath = "src-tauri/tauri.conf.json"
+          $config = Get-Content $configPath -Raw | ConvertFrom-Json
+          $config.bundle.createUpdaterArtifacts = $false
+          $config | ConvertTo-Json -Depth 100 | Set-Content $configPath -NoNewline
+          Write-Host "Disabled updater artifacts for dev workflow_dispatch validation build."
 
       - name: Configure and Import Windows Code Signing Certificate
         if: env.HAS_CERT == 'true'
