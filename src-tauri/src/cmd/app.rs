@@ -2,7 +2,7 @@ use super::CmdResult;
 use crate::core::autostart;
 use crate::{cmd::StringifyErr as _, feat, utils::dirs};
 use smartstring::alias::String;
-use tauri::{AppHandle, Manager as _};
+use tauri::AppHandle;
 
 /// 打开应用程序所在目录
 #[tauri::command]
@@ -35,12 +35,22 @@ pub fn open_web_url(url: String) -> CmdResult<()> {
 /// 打开/关闭开发者工具
 #[tauri::command]
 pub fn open_devtools(app_handle: AppHandle) {
-    if let Some(window) = app_handle.get_webview_window("main") {
-        if !window.is_devtools_open() {
-            window.open_devtools();
-        } else {
-            window.close_devtools();
+    #[cfg(all(debug_assertions, feature = "tauri-dev"))]
+    {
+        use tauri::Manager as _;
+
+        if let Some(window) = app_handle.get_webview_window("main") {
+            if !window.is_devtools_open() {
+                window.open_devtools();
+            } else {
+                window.close_devtools();
+            }
         }
+    }
+
+    #[cfg(not(all(debug_assertions, feature = "tauri-dev")))]
+    {
+        let _ = app_handle;
     }
 }
 
